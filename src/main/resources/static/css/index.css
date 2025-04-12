@@ -1,0 +1,66 @@
+.bg-container {
+  background-image: url('/images/Hospital-Management-System.jpg');
+  height: 700px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-container div{
+  display:flex;
+  flex:column;
+  justify-content:bottom;
+}
+.bg-container div button{
+  margin:530px 0px 0px 20px;
+  padding:15px 60px 15px 60px;
+  font-size:30px;
+  border-radius:25px;
+}
+
+/* login_pages */
+
+body {
+	/* background-color: blue; */
+	
+}
+
+.detail_container {
+	background-color: #fff;
+	width: 60%;
+}
+
+.top-right-radio {
+	display: flex;
+	flex:row;
+	justify-content: center; /* Centers horizontally */
+	align-items: center; /* Centers vertically */
+	gap: 10px; /* Adds spacing between buttons */
+	/* height: 100vh; */ /* Adjust based on your needs */
+}
+
+.container {
+	max-width: 500px;
+	margin-top: 100px;
+}
+
+.card {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login {
+	width: 100%;
+}
+
+/* Registration page */
+.reg-cotainer{
+	border-radius:10px;
+	background-color:#e2e2e2!important;
+}
+
+/* css for patientProfiel */
+
+
+
+/* css for Receipt */
+  

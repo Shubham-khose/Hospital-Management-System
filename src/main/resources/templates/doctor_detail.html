@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<section>
+		<!-- Include the Doctor profile fragment inside home -->
+		<div th:fragment="Doctor_Profile">
+			<h4 class="text-danger text-center">Profile</h4>
+			<table class="table table-bordered table-striped w-100">
+				<tr>
+					<th>Name</th>
+					<td><span th:text="${doctor.name}"></span></td>
+				</tr>
+				<tr>
+					<th>Age</th>
+					<td><span th:text="${doctor.age}"></span></td>
+				</tr>
+				<tr>
+					<th>Gender</th>
+					<td><span th:text="${doctor.gender}"></span></td>
+				</tr>
+				<tr>
+					<th>Specialization</th>
+					<td><span th:text="${doctor.specialization}"></span></td>
+				</tr>
+				<tr>
+					<th>Experience</th>
+					<td><span th:text="${doctor.experience}"></span></td>
+				</tr>
+				<tr>
+					<th>Language Spoke</th>
+					<td><span th:text="${doctor.language}"></span></td>
+				</tr>
+				<tr>
+					<th>Mobile No</th>
+					<td><span th:text="${doctor.mobileNo}"></span></td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td><span th:text="${doctor.emailId}"></span></td>
+				</tr>
+				<tr>
+					<th>Schedule</th>
+					<td><span th:text="${doctor.schedule}"></span></td>
+				</tr>
+			</table>
+		</div>
+		<!-- My Appointments  -->
+		<div th:fragment="Doctor_Appointments">
+			<h4 class="text-danger text-center">My Appointments</h4>
+		<!-- 	<table class="table table-bordered table-striped w-100">
+				<thead>
+					<th>P_ID</th>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Status</th>
+				</thead>
+				
+				<tr th:each="appointment : ${doctor.appointments}">
+					<td><span th:text="${appointment.patient.pId} ?: 'N/A'"></span></td>
+					<td><span th:text="${appointment.patient.name} ?: 'N/A'"></span></td>
+					<td><span th:text="${appointment.date} ?: 'N/A'"></span></td>
+					<td><span th:text="${appointment.time} ?: 'N/A'"></span></td>
+					<td><span th:text="${status} ?: 'N/A'"></span></td>
+				</tr>
+			</table> -->
+			<table class="table table-bordered table-striped w-100">
+				<thead>
+					<tr>
+					<th>P_ID</th>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="doctor_ap_data">
+					<tr >
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- Add Prescription -->
+		<div th:fragment="Doctor_Prescription">
+			<div class="text-center">
+				<form>
+					<input id="prescriptionId" type="text" />
+					<button type="submit" class="text-black bg-primary"
+						onclick="loadPrescription(event)">Search</button>
+					<!-- <div th:if="${patientStatus != null}" class="alert" role="alert">
+						<p class="text-center" th:text="${patientStatus}"></p>
+					</div> -->
+					<div th:if="${session.message}"
+						th:classappend="${session.message.type}" class="alert "
+						role="alert">
+						<p class="text-center" th:text="${session.message.content}"></p>
+						<!-- Remove session message after displaying -->
+						<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block>	 -->
+					</div>
+				</form>
+
+				<form method="post" th:action="@{/doctor/add-prescription}">
+					<table class="table table-bordered table-striped w-100">
+						<tbody id="prescription_detail">
+
+						</tbody>
+					</table>
+					<div class="text-center">
+						<button id="addPrescription" type="submit"></button>
+					</div>
+				</form>
+				<form method="post" th:action="@{/doctor/update-prescription}">
+					<table class="table table-bordered table-striped w-100 text-start">
+						<tbody id="update_prescription_detail">
+
+						</tbody>
+					</table>
+					<div class="text-center">
+						<button id="updatePrescription" type="submit"></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

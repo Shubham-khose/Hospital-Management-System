@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{index::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+</head>
+
+<body>
+	<!-- NavBar -->
+	<!-- Radio Buttons for user selection -->
+	<section>
+		<div id="loginSection">
+			<div class="top-right-radio mt-5">
+				<input type="radio" class="btn-check" name="userType" id="doctor"
+					autocomplete="off" checked> <label
+					class="btn btn-outline-primary" for="doctor">Doctor</label> <input
+					type="radio" class="btn-check" name="userType" id="patient"
+					autocomplete="off"> <label class="btn btn-outline-success"
+					for="patient">Patient</label> <input type="radio" class="btn-check"
+					name="userType" id="admin" autocomplete="off"> <label
+					class="btn btn-outline-danger" for="admin">Admin</label>
+			</div>
+
+			<!-- Login Form -->
+			<div class="container d-flex justify-content-center">
+				<div class="card w-100">
+					<div class="card-body p-4">
+						<h3 class="card-title text-center mb-4">Login</h3>
+
+						<!-- Doctor Login Form -->
+						<div id="doctorLogin" class="login-form">
+							<form th:action="@{/doctor/doctor-log}" method="post">
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" class="alert "
+									role="alert">
+									<p class="text-center" th:text="${session.message.content}"></p>
+									<!-- Remove session message after displaying -->
+									<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block>	 -->
+								</div>
+								<div class="mb-3">
+									<label for="doctorEmail" class="form-label">Email
+										address</label> <input type="email" name="emailId"
+										class="form-control" id="doctorEmail"
+										placeholder="Enter email">
+								</div>
+								<div class="mb-3">
+									<label for="doctorPassword" class="form-label">Password</label>
+									<input type="password" name="password" class="form-control"
+										id="doctorPassword" placeholder="Enter password">
+								</div>
+								<button type="submit" class="btn btn-primary btn-login">Doctor
+									Login</button>
+							</form>
+						</div>
+
+						<!-- Patient Login Form (Initially Hidden) -->
+						<div id="patientLogin" class="login-form" style="display: none;">
+							<form th:action="@{/patient/patient_log}" method="post">
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" class="alert "
+									role="alert">
+									<p class="text-center" th:text="${session.message.content}"></p>
+								</div>
+								<div class="mb-3">
+									<label for="patientEmail" class="form-label">Email
+										address</label> <input type="email" name="emailId"
+										class="form-control" id="patientEmail"
+										placeholder="Enter email">
+								</div>
+								<div class="mb-3">
+									<label for="patientPassword" class="form-label">Password</label>
+									<input type="password" class="form-control" name="password"
+										id="patientPassword" placeholder="Enter password">
+								</div>
+								<button type="submit" class="btn btn-success btn-login"
+									th:href="@{/patient_log}">Patient Login</button>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{/reg}" class="text-center">Register here</a> <a
+										th:href="@{/reg}" class="text-center">Forgot Password</a>
+								</div>
+
+							</form>
+						</div>
+
+						<!-- Admin Login Form (Initially Hidden) -->
+						<div id="adminLogin" class="login-form" style="display: none;">
+							<form th:action="@{/admin-log}" method="post">
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" class="alert "
+									role="alert">
+									<p class="text-center" th:text="${session.message.content}"></p>
+								</div>
+								<div class="mb-3">
+									<label for="adminEmail" class="form-label">Email
+										address</label> <input type="email" name="emailId"
+										class="form-control" id="adminEmail" placeholder="Enter email">
+								</div>
+								<div class="mb-3">
+									<label for="adminPassword" class="form-label">Password</label>
+									<input type="password" name="password" class="form-control"
+										id="adminPassword" placeholder="Enter password">
+								</div>
+								<button type="submit" class="btn btn-danger btn-login">Admin
+									Login</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

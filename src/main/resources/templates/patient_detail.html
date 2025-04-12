@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<section>
+		<!-- Include the patient profile fragment inside home -->
+		<div th:fragment="patient_profile">
+			<h4 class="text-danger text-center">Profile</h4>
+			<table class="table table-bordered table-striped w-100">
+				<tr>
+					<td><strong>Name</strong></td>
+					<td><span th:text="${patient_detail.name}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>DOB</strong></td>
+					<td>: <span th:text="${patient_detail.dob}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Gender</strong></td>
+					<td>: <span th:text="${patient_detail.gender}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Blood Group</strong></td>
+					<td>: <span th:text="${patient_detail.bloodGroup}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Email ID</strong></td>
+					<td>: <span th:text="${patient_detail.emailId}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Address</strong></td>
+					<td>: <span th:text="${patient_detail.address}"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Mobile No</strong></td>
+					<td>: <span th:text="${patient_detail.mobileNo}"></span></td>
+				</tr>
+			</table>
+		</div>
+		<!-- Appointment Booking  -->
+		<div th:fragment="book_appointment">
+			<h4 class="text-danger text-center">Appointment</h4>
+
+			<form id="appointmentForm" method="post"
+				th:action="@{/patient/appointment}" onsubmit="return false;">
+
+				<table class="table table-bordered table-striped w-100">
+					<tr>
+						<td><strong>Select Specialization</strong></td>
+						<td><select id="specializationDropdown" class="form-select"
+							name="specialization" onchange="loadDoctors()">
+								<option value="" selected>Choose...</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><strong>Select Doctor Name</strong></td>
+						<td><select id="doctorDropdown" class="form-select"
+							name="name" onChange="loadFees()">
+								<option value="" selected>Choose Doctor...</option>
+						</select></td>
+					</tr>
+					<td><strong>Consultant Fee</strong></td>
+					<td>
+						<!-- <h5 id="doctorFeeValue" name="consultantFee" style="color:red;font-weight:bold;">₹0</h5> -->
+						<!-- above is wrong way to store data in database  --> <input
+						type="hidden" id="doctorFeeValue" name="consultantFee" value="₹0">
+						<h5 id="doctorFeeDisplay" style="color: red; font-weight: bold;">₹0</h5>
+					</td>
+					<!-- Display fee here -->
+					<tr>
+						<td><strong>Date</strong></td>
+						<td><input type="date" name="date" required></td>
+					</tr>
+					<tr>
+
+						<td><strong>Time</strong></td>
+						<td><select class="form-select" name="time" required>
+								<option selected>Choose Time...</option>
+								<option value="10:00 Am - 11:00 Am">10:00 Am - 11:00 Am</option>
+								<option value="11:00 Am - 12:00 Am">11:00 Am - 12:00 Am</option>
+								<option value="12:00 Am - 01:00 Pm">12:00 Am - 01:00 Pm</option>
+								<option value="01:00 Pm - 02:00 Pm">01:00 Pm - 02:00 Pm</option>
+						</select></td>
+					</tr>
+				</table>
+				<div class="text-center">
+					<button onclick="paymentStart()" class="btn btn-primary">Book</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- Appointment Status -->
+		<div th:fragment="appointment_status">
+			<h1 class="text-danger text-center">Appointment Status</h1>
+			<table class="table table-bordered table-striped w-100">
+				<thead>
+					<tr>
+						<th>Doctor Name</th>
+						<th>Specialization</th>
+						<th>Consultant fees</th>
+						<th>Time</th>
+						<th>Date</th>
+						<th>Payment</th>
+						<th>Status</th>
+						<th>Cancel</th>
+					</tr>
+				</thead>
+				<tbody id="ap_data">
+					<tr>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Update Details -->
+		<div th:fragment="update_patient">
+			<h4 class="text-danger text-center">Update Detail</h4>
+			<form method="post" th:action="@{/patient/update-patient}">
+				<table class="table table-bordered table-striped w-100">
+					<tbody id="update_patient_detail">
+
+					</tbody>
+				</table>
+				<div class="text-center">
+					<button type="submit" id="updatePatient"></button>
+				</div>
+			</form>
+		</div>
+		<!-- View Doctors -->
+		<div th:fragment="view_all_doctors">
+			<h1 class="text-danger text-center">Appointment Status</h1>
+			<table class="table table-bordered table-striped text-center w-100">
+				<thead>
+					<tr>
+						<th>Name Of Doctor</th>
+						<th>Specialization</th>
+						<th>Consultant Fee</th>
+					</tr>
+				</thead>
+				<tbody id="Doctor_details">
+					<tr>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- Receipt Of Payment -->
+		<div th:fragment="receipt_of_payment">
+			<h1 class="text-danger text-center">Receipt of Payment</h1>
+			<div id="receipt_container">
+			
+			</div>
+		</div>
+	</section>
+</body>
+</html>

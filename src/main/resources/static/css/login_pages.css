@@ -1,0 +1,31 @@
+body {
+	/* background-color: blue; */
+	
+}
+
+.detail_container {
+	background-color: #fff;
+	width: 60%;
+}
+
+.top-right-radio {
+	display: flex;
+	flex:row;
+	justify-content: center; /* Centers horizontally */
+	align-items: center; /* Centers vertically */
+	gap: 10px; /* Adds spacing between buttons */
+	/* height: 100vh; */ /* Adjust based on your needs */
+}
+
+.container {
+	max-width: 500px;
+	margin-top: 100px;
+}
+
+.card {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login {
+	width: 100%;
+}

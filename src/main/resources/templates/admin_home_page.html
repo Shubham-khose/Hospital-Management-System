@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{index::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Admin Home Page</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<!-- Sidebar -->
+				<!-- Profile Section -->
+				<div class="col-4 bg-light vh-100 p-3">
+					<div class="text-center">
+						<img src="user-profile.png" alt="User" class="rounded-circle"
+							width="60">
+						<h6 class="mt-2" th:text="${AdminDetail.name}"></h6>
+						<p class="text-muted small"></p>
+						<a class="btn btn-outline-danger w-100" th:href="@{/logout}">Log
+							out</a>
+					</div>
+					<hr>
+					<!-- Dashboard -->
+					<ul id="adminSelectableList" class="list-group list-group-flush">
+						<li class="list-group-item active" data-section="Admin_profile">
+							<a href="#" class="text-decoration-none text-dark">Profile</a>
+						</li>
+						<li class="list-group-item" data-section="paymentRequest" 
+						onclick="loadPaymentRequests()">
+							<a href="#" class="text-decoration-none text-dark">Payment Request</a>
+						</li>
+						<li class="list-group-item" data-section="addDoctor">
+							<a href="#" class="text-decoration-none text-dark">Add Doctor</a>
+						</li>
+						<li class="list-group-item " data-section="updateDoctor">
+							<a href="#" class="text-decoration-none text-dark">Update Details Of Doctor</a>
+						</li>
+						<li class="list-group-item " data-section="records">
+							<a href="#" class="text-decoration-none text-dark">Records</a>
+						</li>					
+					</ul>
+				</div>
+
+				<!-- Main Content -->
+				<div class="col-8 p-4">
+					<!-- Profile Section -->
+					<div id="Admin_profile" class="admin_profile w-100 p-4">
+						<div th:replace="~{admin_detail :: admin_profile}" ></div>
+					</div>
+					<!-- paymentRequest -->
+					<div id="paymentRequest" class="admin_profile w-100 p-4" style="display: none;" ><!-- style="display: none;" -->
+						<div th:replace="~{admin_detail :: admin_payment_requests}"></div>
+					</div>
+					<!-- addDoctor -->
+					<div id="addDoctor" class="admin_profile w-100 p-4" style="display: none;">
+						<div th:replace="~{admin_detail :: admin_add_doctors}" ></div>
+					</div>
+					<!-- updateDoctor -->
+					<div id="updateDoctor" class="admin_profile w-100 p-4"style="display: none;">
+						<div th:replace="~{admin_detail :: admin_update_doctors}"></div>
+					</div>
+					<!-- records -->
+					<div id="records" class="admin_profile w-100 p-4" style="display: none;">
+						<div th:replace="~{admin_detail :: admin_records}"></div>
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="index::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="bg-container">
+      <div >
+        <button class="btn btn-success">
+          <a
+            th:href=@{/log}
+            style="text-decoration: none; color: black"
+          >
+            Login
+          </a>
+        </button>
+        <button class="btn btn-info">
+          <a
+            th:href="@{/reg}"
+            style="text-decoration: none; color: black"
+          >
+            Register
+          </a>
+        </button>
+      </div>
+    </div>
+	</section>
+</body>
+</html>
